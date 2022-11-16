@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>세로 유형1</title>
+    <title>세로 유형2</title>
 
     <style>
         /* reset */
@@ -21,11 +21,11 @@
         #side .logo {width: 300px; height: 150px; line-height: 150px; background: #d1c4e9; }
         #side .nav {width: 300px; height: 700px; background: #ccc}
         #side .nav ul {}
-        #side .nav ul li {text-align: center; background: #b39ddb;}
+        #side .nav ul li {position: relative; text-align: center; background: #b39ddb;}
         #side .nav ul li a {display: block; padding: 10px; font-size: 20px; color: #fff;}
         #side .nav ul li a:hover {background: rgba(0, 0, 0, 0.4);}
-        #side .nav ul li ul.submenu {display: none;}
-        #side .nav ul li ul.submenu  li {}
+        #side .nav ul li ul.submenu {display: none; position: absolute; right: -200px; top: 0px; width: 200px; background: #9575cd;}
+        #side .nav ul li ul.submenu li {}
 
         /* banner */
         #banner {width: 900px; text-align: center; height: 450px; line-height: 450px; background: #9575cd;}
@@ -107,9 +107,9 @@
     <script>
         $(".nav > ul > li").hover(function(){
             $(this).find(".submenu").stop().slideDown();
-        },function(){
+        }, function(){
             $(this).find(".submenu").stop().slideUp();
-        });
+        })
     </script>
 </body>
 </html>
