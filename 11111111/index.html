@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>웹 디자인 기능사</title>
+    <title>이미지 슬라이드2</title>
 
     <style>
         /* reset */
@@ -20,16 +20,13 @@
         #header .nav {float: right; width:950px; height:100px; line-height: 100px; background: #b39ddb;}
 
         /* banner */
-        #banner { width: 1200px; text-align: center; height: 360px; overflow: hidden;}
+        #banner {width: 1200px; height: 360px; text-align: center; overflow: hidden; }
 
-        /* slider */
-        .slideList {position: relative; width: 1200px; height: 360px;}
-        .slideList .slideImg {position: relative;}  
-        .slideList .slideImg h2 {position: absolute; left: 50%; top: 50%;
-        transform: translate(-50%,-50%); background: rgba(255, 255, 255, 0.5);
-        padding: 10px 30px; border-radius: 25px;}
-        .slideList .slideImg img {display: block;}
-
+        /* slideList */
+        .slideList {width: 1200px; height: 360px;}
+        .slideList img {display: block;}
+        .slideList .slideImg { position: relative;}
+        .slideList h2 {position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 10px 30px; background: rgba(255, 255, 255, 0.5); border-radius: 25px;}
 
 
         /* contents */
@@ -40,7 +37,7 @@
         #contents > div.cont3 {background: #5e35b1;}
 
         /* footer */
-        #footer {height: 100px; line-height: 100px; text-align: center;}
+        #footer {height: 100px; line-height: 100px; text-align: center; }
         #footer .foot1 {float: left; width: 200px; background: #5e35b1;}
         #footer .foot2 {float: left; width: 800px; background: #512da8;}
         #footer .foot3 {float: left; width: 200px; background: #4527a0;}
@@ -58,16 +55,16 @@
         <section id="banner">
             <div class="slideList">
                 <div class="slideImg">
-                    <h2>이미지1</h2>
-                    <img src="img/ban01.jpg" alt="이미지">
+                    <h2>페이드 효과 이미지1</h2>
+                    <img src="./img/ban01.jpg" alt="이미지">
                 </div>
                 <div class="slideImg">
-                    <h2>이미지2</h2>
-                    <img src="img/ban02.jpg" alt="이미지">
+                    <h2>페이드 효과 이미지2</h2>
+                    <img src="./img/ban02.jpg" alt="이미지">
                 </div>
                 <div class="slideImg">
-                    <h2>이미지3</h2>
-                    <img src="img/ban03.jpg" alt="이미지">
+                    <h2>페이드 효과 이미지3</h2>
+                    <img src="./img/ban03.jpg" alt="이미지">
                 </div>
             </div>
         </section>
@@ -90,24 +87,17 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
-        var currentIndex = 0;
-        
-        // 3초에 한번씩 함수를 실행한다
-        setInterval(function(){
-            if(currentIndex < 2){
-                currentIndex++;
-            } else {
-                currentIndex = 0;
-            }
-                                    // 0 = 0
-                                    // 1 = -360px
-                                    // 2 = -720px
-                                    // 0 = 0
-                                    // 1 = -360px
-                                    // 2 = -720px
-            var slidePosition = currentIndex * (-360)+"px";
-            $(".slideList").animate({top:slidePosition},400);
-        },3000);
+        // gt : 이상
+        $(".slideList").children("div:gt(0)").hide();
+       var current = 0;
+
+       setInterval(function(){
+        var next = (current + 1) % 3;
+        // eq : 순서
+        $(".slideList").find("div").eq(current).fadeOut();
+        $(".slideList").find("div").eq(next).fadeIn();
+        current = next;
+       }, 3000);
     </script>
 </body>
 
